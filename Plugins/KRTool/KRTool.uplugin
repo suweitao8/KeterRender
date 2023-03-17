@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "KRTool",
+	"Description": "Light Tool For Cinematics Project",
+	"Category": "Other",
+	"CreatedBy": "Keter",
+	"CreatedByURL": "https://space.bilibili.com/72371081?spm_id_from=333.1007.0.0",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "KRTool",
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault"
+		}
+	]
+}
