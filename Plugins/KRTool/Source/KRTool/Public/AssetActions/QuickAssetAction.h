@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
+#include "AssetActionUtility.h"
 #include "Materials/Material.h"
 #include "Materials/MaterialInstanceConstant.h"
 #include "Particles/ParticleSystem.h"
@@ -11,9 +13,8 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "NiagaraSystem.h"
 #include "NiagaraEmitter.h"
+#include "LevelSequence.h"
 
-#include "CoreMinimal.h"
-#include "AssetActionUtility.h"
 #include "QuickAssetAction.generated.h"
 
 
@@ -26,14 +27,30 @@ class KRTOOL_API UQuickAssetAction : public UAssetActionUtility
 	GENERATED_BODY()
 
 public:
+	/// <summary>
+	/// 测试函数，直接调用
+	/// </summary>
 	UFUNCTION(CallInEditor)
 		void TestFunc();
 
+	/// <summary>
+	/// 复制指定数量的当前选择的资产
+	/// </summary>
+	/// <param name="Count">复制的数量</param>
 	UFUNCTION(CallInEditor)
 		void DuplicateAssets(int32 Count);
 
+	/// <summary>
+	/// 自动给选中的资产增加前缀
+	/// </summary>
 	UFUNCTION(CallInEditor)
 		void AddPrefixes();
+
+	/// <summary>
+	/// 移除未使用的资产
+	/// </summary>
+	UFUNCTION(CallInEditor)
+		void RemoveUnusedAssets();
 
 private:
 	TMap<UClass*, FString> PrefixMap =
@@ -52,5 +69,8 @@ private:
 		{USkeletalMeshComponent::StaticClass(), TEXT("SK")},
 		{UNiagaraSystem::StaticClass(), TEXT("NS")},
 		{UNiagaraEmitter::StaticClass(), TEXT("NE")},
+		{ULevelSequence::StaticClass(), TEXT("LS")},
 	};
+
+	void FixUpRedirectors();
 };

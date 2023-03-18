@@ -26,7 +26,8 @@ public class KRTool : ModuleRules
 			new string[]
 			{
 				"Core", "Blutility", "EditorScriptingUtilities",
-				"Niagara", "UMG"
+				"Niagara", "UMG", "LevelSequence",
+				"UnrealEd", "AssetTools", "ContentBrowser",
 			}
 			);
 			
