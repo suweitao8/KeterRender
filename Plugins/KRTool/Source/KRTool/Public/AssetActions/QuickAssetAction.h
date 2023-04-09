@@ -14,9 +14,10 @@
 #include "NiagaraSystem.h"
 #include "NiagaraEmitter.h"
 #include "LevelSequence.h"
+#include "Animation/AnimSequence.h"
+#include "Animation/AnimBlueprint.h"
 
 #include "QuickAssetAction.generated.h"
-
 
 /**
  *
@@ -67,9 +68,11 @@ private:
 		{UTexture2D::StaticClass(), TEXT("T")},
 		{UUserWidget::StaticClass(), TEXT("WBP")},
 		{USkeletalMeshComponent::StaticClass(), TEXT("SK")},
-		{UNiagaraSystem::StaticClass(), TEXT("NS")},
-		{UNiagaraEmitter::StaticClass(), TEXT("NE")},
+		{UNiagaraSystem::StaticClass(), TEXT("FXS")},
+		{UNiagaraEmitter::StaticClass(), TEXT("FXE")},
 		{ULevelSequence::StaticClass(), TEXT("LS")},
+		{UAnimSequence::StaticClass(), TEXT("AS")},
+		{UAnimBlueprint::StaticClass(), TEXT("ABP")},
 	};
 
 	void FixUpRedirectors();

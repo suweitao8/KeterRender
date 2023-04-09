@@ -62,16 +62,27 @@ void UQuickAssetAction::AddPrefixes()
 		{
 			DebugHeader::ShowMessage(EAppMsgType::Ok, TEXT("Failed to find prefix for class ") +
 												SelectedObject->GetClass()->GetName());
-			continue;
+			return;
 		}
 
 		FString OldName = SelectedObject->GetName();
 
+		// 预处理名字
 		// 移除 MaterialInstance 的 M_ 和 _inst
 		if (SelectedObject->IsA<UMaterialInstanceConstant>())
 		{
 			OldName.RemoveFromStart(TEXT("M_"));
 			OldName.RemoveFromEnd(TEXT("_Inst"));
+		}
+		// 有些命名习惯不同，纠正过来
+		else if (SelectedObject->IsA<UAnimSequence>() && OldName.StartsWith(TEXT("Anim_")))
+		{
+			OldName.RemoveFromStart(TEXT("Anim_"));
+		}
+		// 如果不小心前面有个 "_"
+		else if (OldName.StartsWith(TEXT("_")))
+		{
+			OldName.RemoveFromStart(TEXT("_"));
 		}
 
 		if (OldName.StartsWith(*PrefixFound + TEXT("_")))
@@ -79,7 +90,6 @@ void UQuickAssetAction::AddPrefixes()
 			continue;
 		}
 		
-
 		const FString NewName = *PrefixFound + TEXT("_") + OldName;
 		UEditorUtilityLibrary::RenameAsset(SelectedObject, NewName);
 		++Counter;
